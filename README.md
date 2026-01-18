@@ -1,2 +1,406 @@
-# diecinuevedeeneroooooo
-teamoooo mi reina
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Para mi blanquita🤍</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: linear-gradient(135deg, #fffaf0 0%, #fdf4f0 100%);
+      color: #4a3c31;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Fondo sutil con tulipanes y lirios en toda la página */
+    .floral-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.07;
+      background: url('https://thumbs.dreamstime.com/b/soft-pastel-pink-tulips-fresh-green-leaves-rest-wooden-background-creating-delicate-elegant-floral-composition-367034086.jpg') center/cover no-repeat;
+      z-index: 1;
+    }
+
+    /* Pantalla 1 - Código */
+    #screen1 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      transition: opacity 1s ease;
+      position: relative;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 3.4rem);
+      color: #d89a9e;
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      font-size: clamp(1.2rem, 4vw, 1.5rem);
+      color: #8b6f5c;
+      margin-bottom: 2.5rem;
+    }
+
+    .code-input {
+      display: flex;
+      gap: 12px;
+      margin: 2rem 0 3rem;
+    }
+
+    .digit {
+      width: clamp(60px, 18vw, 80px);
+      height: clamp(80px, 22vw, 100px);
+      background: white;
+      border: 2px solid #f5e1da;
+      border-radius: 14px;
+      font-size: clamp(2.2rem, 7vw, 3rem);
+      text-align: center;
+      color: #4a3c31;
+      font-weight: bold;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    }
+
+    .digit:focus {
+      outline: none;
+      border-color: #d89a9e;
+      box-shadow: 0 0 0 4px rgba(216,154,158,0.2);
+    }
+
+    .btn {
+      padding: 14px 38px;
+      font-size: clamp(1.1rem, 4vw, 1.3rem);
+      background: #d89a9e;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 1.5rem;
+    }
+
+    .btn:hover {
+      background: #c67f85;
+      transform: translateY(-2px);
+    }
+
+    .btn:disabled {
+      background: #d1b8b8;
+      cursor: not-allowed;
+    }
+
+    /* Pantalla 2 - Rosas + Nota + Sobre */
+    #screen2 {
+      display: none;
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .roses-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.12;
+      background: url('https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?auto=format&fit=crop&q=70') center/cover no-repeat;
+      z-index: 1;
+    }
+
+    .note {
+      background: rgba(255, 251, 245, 0.94);
+      backdrop-filter: blur(12px);
+      padding: clamp(2.5rem, 6vw, 4rem) clamp(1.8rem, 5vw, 3rem);
+      border-radius: 24px;
+      max-width: 720px;
+      box-shadow: 0 12px 40px rgba(139,111,92,0.15);
+      border: 1px solid #f5e1da;
+      z-index: 3;
+      position: relative;
+    }
+
+    .envelope-container {
+      margin-top: 4rem;
+      cursor: pointer;
+      z-index: 3;
+    }
+
+    .envelope {
+      width: clamp(220px, 50vw, 280px);
+      height: clamp(140px, 32vw, 180px);
+      background: linear-gradient(to bottom, #fdf4f0, #f9ece6);
+      border: 3px solid #e8d5cc;
+      border-radius: 12px 12px 60% 60%/ 20% 20% 80% 80%;
+      position: relative;
+      margin: 0 auto;
+      transition: transform 0.6s;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .envelope::before {
+      content: '';
+      position: absolute;
+      top: -3px; left: 50%;
+      transform: translateX(-50%);
+      width: 0; height: 0;
+      border-left: 50vw solid transparent;
+      border-right: 50vw solid transparent;
+      border-bottom: clamp(90px, 20vw, 120px) solid #e8d5cc;
+      z-index: 1;
+    }
+
+    .envelope::after {
+      content: 'Click para abrir →';
+      position: absolute;
+      bottom: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: clamp(1rem, 3.5vw, 1.2rem);
+      color: #8b6f5c;
+      font-style: italic;
+      white-space: nowrap;
+    }
+
+    .envelope:hover {
+      transform: scale(1.06);
+    }
+
+    /* Pantalla 3 - Carta con marco floral (papel blanco puro) */
+    #screen3 {
+      display: none;
+      min-height: 100vh;
+      padding: 60px 20px;
+      background: linear-gradient(to bottom, #fffaf0, #fdf4f0);
+      position: relative;
+    }
+
+    .letter-wrapper {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .letter {
+      background: white;  /* Blanco puro para el papel de la carta */
+      padding: clamp(3rem, 7vw, 5rem) clamp(2rem, 6vw, 4rem);
+      border-radius: 18px;
+      box-shadow: 0 15px 50px rgba(139,111,92,0.12);
+      border: 1px solid #f5e1da;
+      line-height: 1.82;
+      font-size: clamp(1.1rem, 3.2vw, 1.22rem);
+      color: #3f2e24;
+      position: relative;
+      z-index: 2;
+    }
+
+    .floral-decor-top,
+    .floral-decor-bottom {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 220px;
+      pointer-events: none;
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0.28;
+      z-index: 1;
+    }
+
+    .floral-decor-top {
+      top: -100px;
+      background-image: url('https://thumbs.dreamstime.com/b/delicate-pink-white-roses-rich-green-leaves-elegant-flower-buds-compose-graceful-floral-frame-fresh-bouquet-decorates-soft-beige-410778932.jpg');
+      background-position: top center;
+    }
+
+    .floral-decor-bottom {
+      bottom: -100px;
+      background-image: url('https://thumbs.dreamstime.com/b/soft-pastel-pink-tulips-fresh-green-leaves-rest-wooden-background-creating-delicate-elegant-floral-composition-367034086.jpg');
+      background-position: bottom center;
+    }
+
+    .letter h2 {
+      color: #d89a9e;
+      font-size: clamp(2.2rem, 6vw, 2.8rem);
+      margin-bottom: 2.2rem;
+      text-align: center;
+      font-weight: 400;
+    }
+
+    .heart {
+      color: #d32f2f;
+      font-size: 1.5rem;
+      margin: 0 6px;
+    }
+
+    .signature {
+      margin-top: 4rem;
+      text-align: right;
+      font-style: italic;
+      color: #8b6f5c;
+      font-size: clamp(1.2rem, 4vw, 1.4rem);
+    }
+
+    p {
+      margin-bottom: 1.6rem;
+    }
+
+    @media (max-width: 600px) {
+      .letter {
+        padding: 2.5rem 1.8rem;
+      }
+      .floral-decor-top, .floral-decor-bottom {
+        height: 160px;
+        opacity: 0.22;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="floral-bg"></div>
+
+  <!-- Pantalla 1: introducir código -->
+  <div id="screen1">
+    <div class="container">
+      <h1>Introduce el código bebe</h1>
+      <p class="subtitle">sabes tu bien cual eessss 🤍</p>
+
+      <div class="code-input">
+        <input type="text" class="digit" maxlength="1" pattern="[0-9]" inputmode="numeric" id="d1" autofocus>
+        <input type="text" class="digit" maxlength="1" pattern="[0-9]" inputmode="numeric" id="d2">
+        <input type="text" class="digit" maxlength="1" pattern="[0-9]" inputmode="numeric" id="d3">
+      </div>
+
+      <button class="btn" id="checkBtn" disabled>Entrar</button>
+    </div>
+  </div>
+
+  <!-- Pantalla 2: rosas + nota + sobre -->
+  <div id="screen2">
+    <div class="roses-bg"></div>
+    <div class="container">
+      <div class="note">
+        <h2 style="color:#d89a9e; margin-bottom:1.8rem;">Por que dime tu...</h2>
+        <p style="font-size: clamp(1.3rem, 4.5vw, 1.5rem); line-height:1.7;">
+          ¿Qué hace un rey sin su reina?<br>
+          Te amo, miniña 🤍
+        </p>
+      </div>
+
+      <div class="envelope-container" id="envelope">
+        <div class="envelope"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pantalla 3: carta abierta con marco de tulipanes y lirios (papel blanco) -->
+  <div id="screen3">
+    <div class="container">
+      <div class="letter-wrapper">
+        <div class="floral-decor-top"></div>
+        <div class="letter">
+          <h2>Feliz año, amoooooor 🤍</h2>
+          
+          <p>Pero no me voy a cansar de decirte que más feliz estoy yo de tenerte aquí a mi lado un día más, y hoy especialmente no es un día cualquiera, estoy muy muy muy feliz de poder tenerte mor, y ya son 365 días.</p>
+          
+          <p>Gracias amor por tratarme como siempre me has tratado, en los momentos buenísimos, malos, y en esos momentos donde estoy yo más rayado que una peonza dando vueltas y vueltas.</p>
+          
+          <p>El conocerte es lo mejor que me pudo traer el año pasado, tan imprevisto, y llegando al punto de tener claro que eres el amor de mi vida, y no lo digo por quedar bien ni mucho menos porque sí, lo digo porque es lo que siento, por lo que me haces sentir, por lo que me sacas solo tú de dentro, con esas sonrisas tan preciosas, con esos ojos que dan miradas para desmayarte 540 veces, con esos morros tan bellos, esa piel tan suave y sensible, esas pequitas, porque eres mi pequitas boba, aunque seas una rayada y no te gusten, siempre bella, porque la que es bella lo es y eso no se puede fingir</p>
+          
+          <p>pero contigo he aprendido que la belleza no es solo externa, cuando entiendes que hay una belleza interna, de otro ser, del alma, de la presencia, de la voz, de que una persona con sus cosas, por simples que sean, te pueda sacar de cualquier rayada, con esa voz tan hermosa y, sobre todo, frente a cualquier cosa, con su corazón</p>
+          
+          <p>cuando alguien llega a entender lo profundo que puede ser el feeling con una persona, es otro rollo, y para mí, mi niña bella, esto es otro rollo, es más que cualquier cosa, somos tú y yo, y ese feeling no lo podrá entender nadie por mucho que lo intente, nadie entenderá a mi rubia, a mi baby lauri, que ama el turquesa y ahora más el beige, aquella que vende el riñón por anuel y adele, esa personita tan bella, tan hermosa, con sus valores, que sigue esforzándose por todo lo que sueña y quiere, y yo más que orgulloso estoy de ti, vida mía</p>
+          
+          <p>de verdad, me siento muy feliz, muy cómodo, muy a gusto, con ganas de darlo todo mientras sea a tu lado, bebé, agradecido a la vida por traerme la fortuna a mi puta puerta, a la mía, siendo un cualquiera</p>
+          
+          <p>quiero y deseo seguir viéndote crecer, progresar, ser mejor persona, estar en proyectos contigo, mi amor, lo sé bien, que lo quiero todo, pero solo mientras sea a tu lado, orgulloso siempre de ti, feliz por haber podido crecer como persona a tu lado, mi vida, tantas cositas que nos han pasado, y yo sé que vamos bien, no cambiaría esto por nada</p>
+          
+          <p>siempre apoyándote, queriéndote y cuidándote, con ganas de que todo nos salga bien, por nuestro 702 y ya con tu stanley en casita, una vez más, y no la última, feliz 19 amor mío, feliz año y más feliz de estar a tu lado</p>
+          
+          <p>porque solo somos tú y yo, mi niña, porque te elijo todos los días, porque eres tú, y porque te amo demasiado 🤍</p>
+          
+          <p class="signature">pd te pediría ser mi 25 de enero, pero todavía no podemos, poco a poco sé que se nos va a dar, mooor 😘</p>
+        </div>
+        <div class="floral-decor-bottom"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const digits = document.querySelectorAll('.digit');
+    const checkBtn = document.getElementById('checkBtn');
+    const screen1 = document.getElementById('screen1');
+    const screen2 = document.getElementById('screen2');
+    const screen3 = document.getElementById('screen3');
+    const envelope = document.getElementById('envelope');
+
+    digits.forEach((input, index) => {
+      input.addEventListener('input', () => {
+        if (input.value && index < digits.length - 1) {
+          digits[index + 1].focus();
+        }
+        checkCode();
+      });
+
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && !input.value && index > 0) {
+          digits[index - 1].focus();
+        }
+      });
+    });
+
+    function checkCode() {
+      const code = Array.from(digits).map(d => d.value).join('');
+      checkBtn.disabled = code.length !== 3;
+    }
+
+    checkBtn.addEventListener('click', () => {
+      const code = Array.from(digits).map(d => d.value).join('');
+      if (code === '702') {
+        screen1.style.opacity = '0';
+        setTimeout(() => {
+          screen1.style.display = 'none';
+          screen2.style.display = 'flex';
+          setTimeout(() => screen2.style.opacity = '1', 50);
+        }, 800);
+      } else {
+        checkBtn.style.background = '#e57373';
+        setTimeout(() => checkBtn.style.background = '#d89a9e', 600);
+      }
+    });
+
+    envelope.addEventListener('click', () => {
+      screen2.style.opacity = '0';
+      setTimeout(() => {
+        screen2.style.display = 'none';
+        screen3.style.display = 'block';
+        setTimeout(() => screen3.style.opacity = '1', 100);
+      }, 800);
+    });
+  </script>
+</body>
+</html>
